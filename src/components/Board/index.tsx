@@ -14,8 +14,13 @@ const Board = () => {
 
   const loadCards = async () => {
     const cards = await cardRest.getAllCards();
-    console.log('cards',cards)
     setDados(cards.data)
+
+  }
+
+
+  const handleEditCards = (cardId:string,card:CardType)=>{
+    cardRest.editCard(cardId,card).then(()=>loadCards().then())
   }
 
 
@@ -29,9 +34,9 @@ const Board = () => {
 
     return (
         <Styled.Container>
-            <Lane background="#59B4D1" color="#fff" cards={dados.filter((dado) => dado.lista === 'To Do')} skeleton={skeleton}>To Do</Lane>
-            <Lane  background="#D0935A" color="#fff"  cards={dados.filter((dado) => dado.lista === 'Doing')}  skeleton={skeleton}>Doing</Lane>
-            <Lane  background="#945AD1" color="#fff"  cards={dados.filter((dado) => dado.lista === 'Done')}  skeleton={skeleton}>Done</Lane>
+            <Lane background="#59B4D1" color="#fff" handleEditCards={handleEditCards} cards={dados.filter((dado) => dado.lista === 'To Do')} skeleton={skeleton}>To Do</Lane>
+            <Lane  background="#D0935A" color="#fff" handleEditCards={handleEditCards}  cards={dados.filter((dado) => dado.lista === 'Doing')}  skeleton={skeleton}>Doing</Lane>
+            <Lane  background="#945AD1" color="#fff" handleEditCards={handleEditCards}  cards={dados.filter((dado) => dado.lista === 'Done')}  skeleton={skeleton}>Done</Lane>
 
         </Styled.Container>
       );
