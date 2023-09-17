@@ -1,5 +1,4 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React from 'react';
 import { UserType } from '../../types';
 
 const _retrieveData = async (key: string) => {
