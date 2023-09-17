@@ -19,5 +19,7 @@ export const Lane = styled.div<{
 export const LaneTitle = styled.h4<{
     color: string;
   }>`
+    display: flex;
+    justify-content:space-around;
     color: ${(props: { color: string }) => props.color};
 `;
