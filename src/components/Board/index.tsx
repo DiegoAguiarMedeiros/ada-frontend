@@ -4,6 +4,7 @@ import Lane from "./Lane";
 import * as Styled from "./styles";
 import cardRest from '../../services/card/card-rest';
 import { useEffect, useState } from "react";
+import AddCard from "./AddCard";
     
 
 const Board = () => {
@@ -19,6 +20,9 @@ const Board = () => {
   }
 
 
+  const handleAddCards = (card:CardType)=>{
+    cardRest.addCard(card).then(()=>loadCards().then())
+  }
   const handleEditCards = (cardId:string,card:CardType)=>{
     cardRest.editCard(cardId,card).then(()=>loadCards().then())
   }
@@ -36,9 +40,18 @@ const Board = () => {
 
     return (
         <Styled.Container>
-            <Lane background="#59B4D1" color="#fff" handleEditCards={handleEditCards} handleDeleteCards={handleDeleteCards} cards={dados.filter((dado) => dado.lista === 'To Do')} skeleton={skeleton}>To Do</Lane>
-            <Lane  background="#D0935A" color="#fff" handleEditCards={handleEditCards} handleDeleteCards={handleDeleteCards}   cards={dados.filter((dado) => dado.lista === 'Doing')}  skeleton={skeleton}>Doing</Lane>
-            <Lane  background="#945AD1" color="#fff" handleEditCards={handleEditCards} handleDeleteCards={handleDeleteCards}   cards={dados.filter((dado) => dado.lista === 'Done')}  skeleton={skeleton}>Done</Lane>
+            <Lane background="#59B4D1" color="#fff" handleEditCards={handleEditCards} handleDeleteCards={handleDeleteCards} cards={dados.filter((dado) => dado.lista === 'To Do')} skeleton={skeleton}>
+             <p>To Do</p> 
+             <AddCard handleAddCards={handleAddCards} coluna="To Do"/>
+            </Lane>
+            <Lane  background="#D0935A" color="#fff" handleEditCards={handleEditCards} handleDeleteCards={handleDeleteCards}   cards={dados.filter((dado) => dado.lista === 'Doing')}  skeleton={skeleton}>
+            <p>Doing</p> 
+             <AddCard handleAddCards={handleAddCards} coluna="Doing"/>
+            </Lane>
+            <Lane  background="#945AD1" color="#fff" handleEditCards={handleEditCards} handleDeleteCards={handleDeleteCards}   cards={dados.filter((dado) => dado.lista === 'Done')}  skeleton={skeleton}>
+            <p>Done</p> 
+             <AddCard handleAddCards={handleAddCards} coluna="Done"/>
+            </Lane>
 
         </Styled.Container>
       );
