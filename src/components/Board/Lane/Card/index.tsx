@@ -8,10 +8,11 @@ import EditCard from "./EditCard";
 
 interface CardProps {
     card: CardType;
-    handleEditCards: (cardId: string, card: CardType) => void
+    handleEditCards: (cardId: string, card: CardType) => void;
+    handleDeleteCards: (cardId: string) => void
 }
 
-const Card = ({card,handleEditCards}:CardProps) =>{
+const Card = ({card,handleEditCards,handleDeleteCards}:CardProps) =>{
 
     const [editMode, setEditMode] = useState(false);
 
@@ -25,7 +26,9 @@ const Card = ({card,handleEditCards}:CardProps) =>{
         handleEditCards(cardId,newCard);
         handleEditMode();
     }
-
+    const handleDelete = () => {
+        handleDeleteCards(card._id!)
+    }
     return (
 
         editMode ?
@@ -44,7 +47,7 @@ const Card = ({card,handleEditCards}:CardProps) =>{
             <ReactMarkdown  className="markdown-container">{card.conteudo}</ReactMarkdown>
         </Styled.CardBody>
         <Styled.CardFooter>
-            <p><DeleteIcon/></p>
+            <p><DeleteIcon onClick={handleDelete}/></p>
         </Styled.CardFooter>
         </Styled.Card>
     )

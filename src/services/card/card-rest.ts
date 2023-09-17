@@ -5,4 +5,6 @@ const getAllCards = () => HttpClient.get(`cards`);
 
 const editCard = (cardId:string,card:CardType) => HttpClient.put(`cards/${cardId}`,card);
 
-export default {getAllCards,editCard};
+const deleteCard = (cardId:string) => HttpClient.delete(`cards/${cardId}`);
+
+export default {getAllCards,editCard,deleteCard};

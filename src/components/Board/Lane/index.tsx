@@ -10,10 +10,11 @@ interface LaneProps {
     children: ReactNode;
     cards: CardType[];
     skeleton:boolean;
-    handleEditCards: (cardId: string, card: CardType) => void
+    handleEditCards: (cardId: string, card: CardType) => void;
+    handleDeleteCards: (cardId: string) => void
 }
 
-const Lane = ({background,color,children,cards,skeleton,handleEditCards}:LaneProps) => {
+const Lane = ({background,color,children,cards,skeleton,handleEditCards,handleDeleteCards}:LaneProps) => {
     return(
     <Styled.Lane background={background}>
         <Styled.LaneTitle color={color}>
@@ -24,7 +25,7 @@ const Lane = ({background,color,children,cards,skeleton,handleEditCards}:LanePro
             <CardSkeleton/>
             :
             cards.map((card) => (
-                <Card key={card._id} card={card} handleEditCards={handleEditCards}/>
+                <Card key={card._id} card={card} handleEditCards={handleEditCards} handleDeleteCards={handleDeleteCards}/>
             ))}
         
     </Styled.Lane>
