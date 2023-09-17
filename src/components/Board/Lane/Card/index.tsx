@@ -2,12 +2,14 @@ import { CardType } from "../../../../types";
 import * as Styled from "./styles";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ReactMarkdown from "react-markdown";
 
 interface CardProps {
     card: CardType
 }
 
 const Card = ({card}:CardProps) =>{
+
     return (
     <Styled.Card>
     <Styled.CardHead>
@@ -19,7 +21,7 @@ const Card = ({card}:CardProps) =>{
         </Styled.CardHeadIcon>
     </Styled.CardHead>
     <Styled.CardBody>
-        <p>{card.conteudo}</p>
+        <ReactMarkdown  className="markdown-container">{card.conteudo}</ReactMarkdown>
     </Styled.CardBody>
     <Styled.CardFooter>
         <p><DeleteIcon/></p>

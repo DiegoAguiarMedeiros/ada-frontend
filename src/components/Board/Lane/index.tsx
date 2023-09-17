@@ -8,22 +8,24 @@ interface LaneProps {
     background:string;
     color:string;
     children: ReactNode;
-    cards: CardType[]
+    cards: CardType[];
+    skeleton:boolean
 }
 
-const Lane = ({background,color,children,cards}:LaneProps) => {
+const Lane = ({background,color,children,cards,skeleton}:LaneProps) => {
     return(
     <Styled.Lane background={background}>
         <Styled.LaneTitle color={color}>
         {children}
         </Styled.LaneTitle>
-        <CardSkeleton/>
-        {cards.map((card) => (
-
-            <Card key={card.id} card={card}/>
-
-        ))}
-
+        {
+            skeleton ?
+            <CardSkeleton/>
+            :
+            cards.map((card) => (
+                <Card key={card.id} card={card}/>
+            ))}
+        
     </Styled.Lane>
   )
 }

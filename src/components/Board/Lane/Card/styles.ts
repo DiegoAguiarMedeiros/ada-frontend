@@ -28,6 +28,11 @@ export const CardBody = styled.div`
   padding: 5px;
   display: flex;
   text-align: justify;
+
+  .markdown-container {
+    width: 100%; /* Set the desired width for the Markdown content */
+    /* Add other styling as needed */
+  }
 `;
 export const CardFooter = styled.div`
 

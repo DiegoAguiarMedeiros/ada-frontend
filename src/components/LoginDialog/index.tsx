@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,7 +8,6 @@ import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import PersonIcon from '@mui/icons-material/Person';
-import AddIcon from '@mui/icons-material/Add';
 import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
 import authRest from '../../services/auth/auth-rest';
@@ -18,7 +16,7 @@ import User from '../../utils/user';
 import { useEffect } from 'react';
 import { UserDataType } from '../../types';
 
-const users = ['letscode', 'letscode2'];
+const users = ['letscode'];
 
 export interface SimpleDialogProps {
   open: boolean;
@@ -40,7 +38,14 @@ function SimpleDialog(props: SimpleDialogProps) {
       senha:"lets@123"
     }
 
-    authRest.login(user).then((retorno) => User.setUserData(retorno.data))
+    try{
+      authRest.login(user).then((retorno) => {
+        User.setUserData(retorno.data)
+      })
+
+    }catch(err){
+      console.log('err',err)
+    }
 
     handleClose()
     onClose(value);
@@ -93,9 +98,6 @@ export default function SimpleDialogDemo() {
       <Typography variant="subtitle1" component="div">
         User: {selectedValue}
       </Typography>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Change
-      </Button>
       <SimpleDialog
         selectedValue={selectedValue}
         open={open}

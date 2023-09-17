@@ -6,10 +6,14 @@ export const Lane = styled.div<{
     background: ${(props: { background: string }) => props.background};
     flex: 1;
     margin: 0 10px;
-    height:95vh;  
+    height:90vh;  
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 0 15px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 1px;
+    }
 `;
 
 export const LaneTitle = styled.h4<{
